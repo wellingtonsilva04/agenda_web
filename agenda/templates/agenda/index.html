@@ -1,0 +1,10 @@
+
+{% if contatos_list %}
+    <ul>
+    {% for contato in contatos_list %}
+        <li><a href="{% url 'agenda:detail' contato.id %}">{{ contato.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Contatos Avaliados.</p>
+{% endif %}
