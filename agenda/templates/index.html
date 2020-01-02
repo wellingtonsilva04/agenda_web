@@ -1,11 +1,13 @@
-{% extends 'base.html' %}
-{% block title %}Home{% endblock %}
-
 {% block content %}
 
 {% if user.is_authenticated %}
+
 Hi {{ user.username }}!
-<p><a href="{% url 'logout' %}">logout</a></p>
+
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'logout' %}">Sair</a>
+</li>
+
 {% if contatos_list %}
 <ul>
   {% for contato in contatos_list %}
@@ -15,9 +17,12 @@ Hi {{ user.username }}!
 {% else %}
 <p>No Contatos Avaliados.</p>
 {% endif %}
+
 {% else %}
 <p>You are not logged in</p>
-<a href="{% url 'login' %}">login</a>
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'login' %}">Login</a>
+</li>
 {% endif %}
 
 
