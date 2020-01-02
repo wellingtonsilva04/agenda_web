@@ -1,10 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
 
+{% block content %}
+
+{% if user.is_authenticated %}
+Hi {{ user.username }}!
+<p><a href="{% url 'logout' %}">logout</a></p>
 {% if contatos_list %}
-    <ul>
-    {% for contato in contatos_list %}
-        <li><a href="{% url 'agenda:detail' contato.id %}">{{ contato.name }}</a></li>
-    {% endfor %}
-    </ul>
+<ul>
+  {% for contato in contatos_list %}
+  <li><a href="{% url 'agenda:detail' contato.id %}">{{ contato.name }}</a></li>
+  {% endfor %}
+</ul>
 {% else %}
-    <p>No Contatos Avaliados.</p>
+<p>No Contatos Avaliados.</p>
 {% endif %}
+{% else %}
+<p>You are not logged in</p>
+<a href="{% url 'login' %}">login</a>
+{% endif %}
+
+
+{% endblock %}
